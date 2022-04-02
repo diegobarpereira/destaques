@@ -74,7 +74,7 @@ async def scrap():
                            handleSIGHUP=False)
     page = await browser.newPage()
     await page.goto('https://gatomestre.globoesporte.globo.com/mais-escalados-do-cartola-fc/')
-    await page.waitFor(800)
+    await page.waitFor(1000)
     content = await page.content()
 
     await browser.close()
