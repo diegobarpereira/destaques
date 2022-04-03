@@ -24,10 +24,8 @@ app.url_map.strict_slashes = False
 
 @app.route('/')
 def dest_page():
-    start_time = time.time()
-    capitaes, reservas = retornar_capitaes()
 
-    print("--- %s seconds ---" % (time.time() - start_time))
+    capitaes, reservas = retornar_capitaes()
 
     return render_template('destaques.html', get_list=retornar_destaques(), get_capitaes=capitaes,
                            get_reservas=reservas)
@@ -74,7 +72,8 @@ async def scrap():
                            handleSIGHUP=False)
     page = await browser.newPage()
     await page.goto('https://gatomestre.globoesporte.globo.com/mais-escalados-do-cartola-fc/')
-    await page.waitFor(2000)
+    # await page.waitFor(2000)
+    await page.waitForXPath('//i[@class="GM-ICONES-icon GM-ICONES-icon--arrow-round-down"]')
     content = await page.content()
 
     await browser.close()
@@ -82,6 +81,8 @@ async def scrap():
 
 
 def retornar_capitaes():
+    start_time = time.time()
+
     with open('static/partidas.json', encoding='utf-8', mode='r') as currentFile:
         data = currentFile.read().replace('\n', '')
 
@@ -172,6 +173,8 @@ def retornar_capitaes():
                 for nome_res, clube_res, posicao_res, escalacao_res, foto_res, adv_res
                 in
                 zip(nomes_res, club_list_res, posicoes_res, res_escalacoes, imgs_res, adv_res_list)}
+
+    print("--- %s seconds ---" % (time.time() - start_time))
 
     return cap_dict, res_dict
 
