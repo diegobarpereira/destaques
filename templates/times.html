@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga Heineken 2022 - Liga</title>
+    <link rel="icon" href="data:,">
+
+  <script src=
+"https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+  <script>
+$(document).ready(function() {
+    $('.film td.2').hide();
+    $('td.1').click(function() {
+       $(this).parents('table').find('td.2').toggle();
+    });
+});
+
+        $(document).ready(function(){
+            $(document).on('click','.1',function(event){
+               event.preventDefault();
+               var td_txt = $(this).text();
+              console.log(td_txt);
+            //or you can use alert.
+           });
+        });
+</script>
+
+</head>
+<body style="background-color:black; color:#ffffff;">
+<div style="background-color:black;color:white;">
+    <br/>
+    <br/>
+
+<center>
+     <table border="1" class="film">
+        <tr> <th colspan="5" align="center"> Liga </th> </tr>
+
+        <tr>
+
+            {% for keys, values in get_list %}
+                <tr>
+                    <td class="1" align="center"><font color="white">{{keys}}</font></td>
+                    <td align="center"><font color="white">{{'%0.2f'| format(values[0]|float)}}</font></td>
+                    <td class="2" >
+                        <table>
+                            <tr> <th colspan="1" align="center" bgcolor="white"><font color="black"> POS </font></th>
+                             <th colspan="1" align="center" width="150" bgcolor="white"><font color="black"> Jogador </font></th>
+                             <th colspan="1" align="center" bgcolor="white"><font color="black"> Clube </font></th>
+                             <th colspan="1" align="center" width="400" bgcolor="white"><font color="black"> Scouts </font></th>
+                             <th colspan="1" align="center" bgcolor="white"><font color="black"> Pontos </font></th> </tr>
+                    {% for val in values[1] %}
+                                <tr>
+                        {% for v in val %}
+                            <td align="center">{{v}}</td>
+                        {% endfor %}
+                                </tr>
+                    {% endfor %}
+                    {% if values[2]|length != 0 %}
+                            <tr><tr><th colspan="5" align="center">Reservas</th></tr></tr>
+                             <tr> <th colspan="1" align="center" bgcolor="white"><font color="black"> POS </font></th>
+                             <th colspan="1" align="center" width="150" bgcolor="white"><font color="black"> Jogador </font></th>
+                             <th colspan="1" align="center" bgcolor="white"><font color="black"> Clube </font></th>
+                             <th colspan="1" align="center" width="400" bgcolor="white"><font color="black"> Scouts </font></th>
+                             <th colspan="1" align="center" bgcolor="white"><font color="black"> Pontos </font></th> </tr>
+                    {% for res in values[2] %}
+                                <tr>
+                        {% for r in res %}
+                            <td align="center">{{r}}</td>
+                        {% endfor %}
+                                </tr>
+                    {% endfor %}
+                    {% endif %}
+                        </table>
+                     </td>
+                </tr>
+            {% endfor %}
+
+        </tr>
+    </table>
+</center>
+
+
+</div>
+
+</body>
+</html>

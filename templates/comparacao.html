@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga Heineken 2022 - Comparação</title>
+
+</head>
+<body style="background-color:black; color:#ffffff;">
+<div style="background-color:black;color:white;">
+    <br/>
+    <br/>
+
+    <form action="{{url_for("gfg")}}" method="post">
+    <label for="jogador">Jogador:</label>
+    <input type="text" id="jogador" name="jogador" placeholder="jogador">
+    <label for="time">Clube:</label>
+    <input type="text" id="time" name="time" placeholder="time">
+    <button type="submit">Comparar</button>
+
+    {{get_data}}
+
+
+</div>
+
+</body>
+</html>

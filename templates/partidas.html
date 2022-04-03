@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga Heineken 2022 - Scouts</title>
+
+</head>
+<body style="background-color:black; color:#ffffff;">
+<div style="background-color:black;color:white;">
+    <br/>
+    <br/>
+
+<center>
+     <table border="1">
+        <tr> <th colspan="5" align="center"> Partidas </th> </tr>
+
+        <tr>
+
+
+
+            {% for keys in get_list %}
+                <tr>
+
+
+                    <td align="center"><font color="white">{{keys}}</font></td>
+
+
+                </tr>
+            {% endfor %}
+
+
+
+        </tr>
+    </table>
+</center>
+
+
+</div>
+
+</body>
+</html>
